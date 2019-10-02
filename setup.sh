@@ -3,26 +3,33 @@
 yum update -y
 yum install -y curl
 yum install -y wget
-yum groupinstall -y 'Development tools'
-wget https://nodejs.org/dist/v10.16.3/node-v10.16.3.tar.gz
-tar zxvf node-v10.16.3.tar.gz 
-cd node-v10.16.3
-./configure --prefix=/usr/local
-make
-make install
-cd ..
+
+# install node js
+curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+yum groupinstall 'Development Tools'
+yum install -y gcc-c++ make
+yum install -y nodejs
+
+
+# install docker
 yum install -y git
-yum remove docker docker-common docker-selinux docker-engine
+yum remove -y docker docker-common docker-selinux docker-engine
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum makecache fast
 yum install -y docker-ce
 curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-"$(uname -s)"-"$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
+
+# install jq
 yum install -y epel-release
 yum install -y jq
+
+# install yarn
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-yum install yarn
+yum install -y yarn
+
+# ambrosus-nop
 git clone https://github.com/ambrosus/ambrosus-nop.git
 wget https://nop.ambrosus.com/setup2.sh
 chmod +x setup2.sh
