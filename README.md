@@ -10,6 +10,13 @@ So, I try to creating a script for CentOS 7 as a hobby.
 The author does not guarantee the behavior of the script.
 
 ### How to use
+
+Instead of procedure
+```
+wget https://nop.ambrosus.com/setup.sh
+chmod +x setup.sh
+```
+, execute the follows.
 ```
 yum install -y git
 git clone https://github.com/nekokumapanda/ambrosus-node-setup.git
